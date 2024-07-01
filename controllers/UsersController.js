@@ -13,7 +13,12 @@ class UsersController {
       return res.status(400).send({ error: 'Missing password' });
     }
 
-    const emailExist = await dbClient.usersCollection.findOne({ email });
+    let emailExist;
+    try {
+      emailExist = await dbClient.usersCollection.findOne({ email });
+    } catch (error) {
+      return res.status(500).send({ error: 'Unable find user' });
+    }
 
     if (emailExist) {
       res.status(400).send({ error: 'Already exist' });
