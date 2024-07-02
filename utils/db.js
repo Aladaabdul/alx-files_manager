@@ -33,6 +33,15 @@ class DBClient {
     const numberOfFiles = this.filesCollection.countDocuments();
     return numberOfFiles;
   }
+
+  async findUser(email) {
+    const user = this.usersCollection.findOne({ email });
+    return user;
+  }
+
+  async addUser(email, password) {
+    return this.usersCollection.insertOne({ email, password });
+  }
 }
 
 const dbClient = new DBClient();
