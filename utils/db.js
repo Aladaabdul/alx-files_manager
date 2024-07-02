@@ -39,8 +39,8 @@ class DBClient {
     return user;
   }
 
-  async addUser(query) {
-    return this.usersCollection.insertOne(query);
+  async addUser(email, password) {
+    return this.usersCollection.insertOne(email, password);
   }
 }
 
