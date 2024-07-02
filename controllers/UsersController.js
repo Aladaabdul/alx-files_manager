@@ -15,7 +15,7 @@ class UsersController {
 
     let emailExist;
     try {
-      emailExist = await dbClient.findUser(email);
+      emailExist = await dbClient.findUser({email});
     } catch (error) {
       return res.status(500).send({ error: 'Unable find user' });
     }
@@ -28,7 +28,7 @@ class UsersController {
 
     let user;
     try {
-      user = await dbClient.addUser(email, hashedPassword);
+      user = await dbClient.addUser({email, password: hashedPassword});
     } catch (error) {
       return res.status(500).send({ error: 'unable to save user' });
     }

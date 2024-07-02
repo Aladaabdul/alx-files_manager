@@ -35,12 +35,12 @@ class DBClient {
   }
 
   async findUser(email) {
-    const user = this.usersCollection.findOne({ email });
+    const user = this.usersCollection.findOne(email);
     return user;
   }
 
   async addUser(email, password) {
-    return this.usersCollection.insertOne({ email, password });
+    return this.usersCollection.insertOne(email, password);
   }
 }
 
